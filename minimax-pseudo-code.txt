@@ -1,0 +1,24 @@
+function minimax(node, depth, maximizingPlayer):
+    if depth == 0 or node is a terminal node:
+        return the heuristic value of node
+
+    if maximizingPlayer:
+        maxEval = -infinity
+        for each child of node:
+            eval = minimax(child, depth - 1, false)
+            maxEval = max(maxEval, eval)
+        return maxEval
+    else:
+        minEval = +infinity
+        for each child of node:
+            eval = minimax(child, depth - 1, true)
+            minEval = min(minEval, eval)
+        return minEval
+
+# Example usage:
+# Assume we have a function getChildren(node) that returns the child nodes
+# and a function evaluate(node) that returns the heuristic value of a node
+
+rootNode = initial game state
+bestValue = minimax(rootNode, depth, true)
+
