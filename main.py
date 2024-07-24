@@ -2,8 +2,10 @@ import pygame
 from pygame.math import Vector2
 
 import constants as c
-from grid import COLS, ROWS, SIZE, draw_grid
+from board import Board
+from grid import COLS, ROWS, draw_grid
 from piece import Piece
+from team import Team
 
 # Basic Setup
 pygame.init()
@@ -12,15 +14,7 @@ clock = pygame.time.Clock()
 pygame.display.set_caption("Checkers")
 running = True
 
-pieces = []
-
-for i in range(ROWS + 1):
-    for j in range(COLS + 1):
-        if (i + j) % 2 != 0:
-            if i < 4:
-                pieces.append(Piece(False, Vector2(j, i)))
-            elif i > 5:
-                pieces.append(Piece(True, Vector2(j, i)))
+board = Board()
 
 # Game Loop
 while running:
@@ -30,8 +24,8 @@ while running:
 
     draw_grid(screen)
 
-    for piece in pieces:
-        piece.draw(screen)
+    board.draw(screen)
+    board.make_a_move()
 
     pygame.display.update()
 

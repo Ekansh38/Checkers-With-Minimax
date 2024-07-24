@@ -1,4 +1,3 @@
-import pygame
 from pygame.math import Vector2
 
 from grid import COLS, ROWS, SIZE
