@@ -73,7 +73,10 @@ class Board:
                                     made_move = True
                                     ended_cap_streek = True
                                 else:
-                                    made_move = False
+                                    for capture in self.white_team.capture_moves:
+                                        if capture[0] == self.selected_piece:
+                                            made_move = False
+                                            break
 
                         if not can_capture:
 
@@ -117,7 +120,10 @@ class Board:
                                     made_move = True
                                     ended_cap_streek = True
                                 else:
-                                    made_move = False
+                                    for capture in self.black_team.capture_moves:
+                                        if capture[0] == self.selected_piece:
+                                            made_move = False
+                                            break
 
                         if not can_capture:
                             made_move = self.black_team.make_move(

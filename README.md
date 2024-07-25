@@ -1,68 +1,75 @@
 # Checkers-With-Minimax
 
-For now it's going to be just checkers.
-The Minimax part will come later.
+## Description
 
-## Tools
+This is a checkers game built in Python using the PyGame, library.
+It uses the Minimax algorithm for the computer/AI player to play almost perfectly.
 
-- Python
-- Pygame
+## Table of Contents
 
-## Rules of checkers
+- [Installation](#installation)
+- [Usage](#usage)
+- [Features](#features)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
+- [Acknowledgments](#acknowledgments)
 
-### Board
+## Installation
 
-64 squares,
-8x8,
+1. Clone the repo
 
-Alternating colors, light and dark.
-Top left square is light.
+   ```sh
+   git clone https://github.com/Ekansh38/Checkers-With-Minimax.git
 
-The game is played on the dark squares.
+   ```
 
-Turn based game.
+2. Install Dependencies
 
-### Pieces
+   ```sh
+   pip install pygame
 
-24 total pieces.
+   pip3 install pygame
 
-12 light colored.
-12 dark colored.
+   python3 -m pip install pygame
+   ```
 
-### Object
+3. Run the project
+   ```sh
+   python3 main.py
+   ```
 
-#### Win
+## Usage
 
-Capture all of opponents pieces.
-Or the opponent has no possible move.
+You can play the AI to see how it plays.
+You could also disable the AI and just play with a friend.
+You could also have a look at my code to see how it works.
+And just whatever you want to do with it.
 
-#### Draw
+![Picture of Checkers Board](./images/checkers-board.png)
 
-Players cant win.
+## Features
 
-### Movement
+- A fully working checkers game with all the rules implemented.
+- A Minimax AI that plays almost perfectly.
+- A user friendly GUI built using Pygame.
+- A simple and easy to understand OOP codebase.
 
-#### Simple Move
+## Contributing
 
-Only move forward.
-Diagonally.
-One square at a time.
+I would love for anyone to contribute to this project and make it better in anyway possible. (because I am not that good at coding)
 
-#### Jump
+## License
 
-If there is a opponents piece in a valid move location for you.
-And there is a empty square right diagonally behind it.
-Then you can jump over the piece into the empty square capturing the piece as you do so.
+Distributed under the MIT License. See LICENSE.md for more information.
 
-If after you land if you can make another jump/capture you can jump/capture in succession to your previous jump
-as many times as wanted.
+## Contact
 
-When a player has a chance to jump he MUST DO SO.
-If the player has two or more options to jump, he may choose the one he wants.
+Ekansh - [Twitter or X](https://x.com/mister_byte_) - [email](goenka.ekansh@gmail.com)
 
-### King
+## Acknowledgments
 
-When a piece reaches the end of the board it turns into a king.
-When a piece is a king it will have a little crown.
-
-A king can move backward or forward.
+- [Pygame Documentation](https://www.pygame.org/docs/)
+- [Minimax Algorithm](https://en.wikipedia.org/wiki/Minimax)
+- [Sebastian Lague's Minimax Video](https://www.youtube.com/watch?v=l-hh51ncgDI)
+- [Daniel Shiffman's Minimax Video](https://www.youtube.com/watch?v=trKjYdBASyQ)
