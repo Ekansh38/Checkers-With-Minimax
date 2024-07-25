@@ -1,8 +1,7 @@
 import pygame
-from pygame.math import Vector2
 
-import constants as c
-from grid import COLS, ROWS, SIZE
+from constants import GRAY
+from grid import SIZE
 
 
 class Piece:
@@ -16,7 +15,7 @@ class Piece:
         if self.team == True:
             return "white"
         else:
-            return c.GRAY
+            return GRAY
 
     def draw(self, screen):
         opp_color = "black" if self.color == "white" else "white"

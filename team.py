@@ -1,8 +1,6 @@
-import pygame
 from pygame.math import Vector2
 
-import constants as c
-from grid import COLS, ROWS, SIZE
+from grid import COLS, ROWS
 from piece import Piece
 
 
@@ -36,7 +34,7 @@ class Team:
             elif self.color == "black" and piece.pos.y == 8:
                 piece.is_king = True
 
-    def return_moves(self, pos):
+    def return_possible_moves(self, pos):
         if self.color == "white":
             right_move = Vector2(pos.x + 1, pos.y - 1)
             left_move = Vector2(pos.x - 1, pos.y - 1)
@@ -46,7 +44,7 @@ class Team:
 
         return [left_move, right_move]
 
-    def return_king_moves(self, pos):
+    def return_possible_king_moves(self, pos):
         if self.color == "white":
             f_right_move = Vector2(pos.x + 1, pos.y - 1)
             f_left_move = Vector2(pos.x - 1, pos.y - 1)
@@ -87,24 +85,30 @@ class Team:
         return occupied
 
     def check_in_bounds(self, pos):
-        if pos.x >= 1 and pos.x <= COLS and pos.y >= 1 and pos.y <= ROWS:
-            return True
-        else:
-            return False
+        is_in_bounds = pos.x >= 1 and pos.x <= COLS and pos.y >= 1 and pos.y <= ROWS
+        return is_in_bounds
 
     def make_move(self, move):
+        valid = False
         for possible_move in self.possible_moves:
             if move[0].pos == possible_move[0].pos and move[1] == possible_move[1]:
-                for piece in self.pieces:
-                    if piece.pos == move[0].pos:
-                        piece.pos = move[1]
-                        return True
+                valid = True
+
+        if valid:
+            for piece in self.pieces:
+                if piece.pos == move[0].pos:
+                    piece.pos = move[1]
+                    return True
+
         return False
 
     def make_capture_move(self, move, opponents_pieces):
         valid = False
+        full_valid = False
         for cap in self.capture_moves:
             if move == cap:
+                full_valid = True
+            if move[0].pos == cap[0].pos and move[1] == cap[1]:
                 valid = True
                 break
 
@@ -134,7 +138,8 @@ class Team:
             opponents_piece_pos = move[0].pos - Vector2(x, y)
 
             # Update the moving piece's position
-            move[0].pos = move[1]
+            if full_valid:
+                move[0].pos = move[1]
 
             # Remove the captured opponent's piece
             opponents_pieces = [
@@ -142,17 +147,6 @@ class Team:
             ]
 
         return opponents_pieces
-
-    def draw_possible_moves(self, screen):
-        for move in self.possible_moves:
-            pygame.draw.rect(
-                screen,
-                "green",
-                (
-                    ((move[1].x * c.SIZE) - c.SIZE, (move[1].y * c.SIZE) - c.SIZE),
-                    (c.SIZE, c.SIZE),
-                ),
-            )
 
     def check_captures(self, opponents_pieces):
         valid_moves = []
@@ -260,7 +254,7 @@ class Team:
         for piece in self.pieces:
             if not piece.is_king:
                 # Get the left and right moves positions
-                right_move, left_move = self.return_moves(piece.pos)
+                right_move, left_move = self.return_possible_moves(piece.pos)
 
                 # Adding the piece that moves into the left and right moves
                 right_move = [piece, right_move]
@@ -285,7 +279,7 @@ class Team:
                     if not occupied:
                         self.possible_moves.append(left_move)
             else:
-                king_moves = self.return_king_moves(piece.pos)
+                king_moves = self.return_possible_king_moves(piece.pos)
                 for move in king_moves:
                     for i in move:
                         in_bounds = self.check_in_bounds(i)

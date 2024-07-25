@@ -1,15 +1,11 @@
 import pygame
-from pygame.math import Vector2
 
-import constants as c
 from board import Board
-from grid import COLS, ROWS, draw_grid
-from piece import Piece
-from team import Team
+from constants import FPS, SCREEN_SIZE
 
 # Basic Setup
 pygame.init()
-screen = pygame.display.set_mode(c.SCREEN_SIZE)
+screen = pygame.display.set_mode(SCREEN_SIZE)
 clock = pygame.time.Clock()
 pygame.display.set_caption("Checkers")
 running = True
@@ -22,13 +18,11 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-    draw_grid(screen)
-
     board.draw(screen)
-    board.make_a_move()
+    board.play()
 
     pygame.display.update()
 
-    clock.tick(c.FPS)
+    clock.tick(FPS)
 
 pygame.quit()

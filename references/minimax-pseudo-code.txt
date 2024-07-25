@@ -2,18 +2,28 @@ function minimax(node, depth, maximizingPlayer):
     if depth == 0 or node is a terminal node:
         return the heuristic value of node
 
+    best move = nothing
+
     if maximizingPlayer:
         maxEval = -infinity
         for each child of node:
-            eval = minimax(child, depth - 1, false)
-            maxEval = max(maxEval, eval)
-        return maxEval
+            node make move child
+            eval, best move = minimax(node, depth - 1, false)
+            node undo move child
+            if eval > maxEval
+                best move = child
+                maxEval = eval
+        return maxEval, best move
     else:
-        minEval = +infinity
+       minEval = +infinity
         for each child of node:
+            node make move child
             eval = minimax(child, depth - 1, true)
-            minEval = min(minEval, eval)
-        return minEval
+            node undo move child
+            if eval < minEval
+                best move = child
+                minEval = eval
+        return minEval, best move
 
 # Example usage:
 # Assume we have a function getChildren(node) that returns the child nodes
