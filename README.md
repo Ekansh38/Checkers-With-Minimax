@@ -65,7 +65,7 @@ Distributed under the MIT License. See LICENSE.md for more information.
 
 ## Contact
 
-Ekansh - [Twitter or X](https://x.com/mister_byte_) - [email](goenka.ekansh@gmail.com)
+Ekansh - [Twitter or X](https://x.com/mister_byte_) - goenka.ekansh@gmail.com
 
 ## Acknowledgments
 
