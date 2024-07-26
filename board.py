@@ -13,7 +13,7 @@ class Board:
         self.turn = self.white_team
         self.selected_piece = None
         self.selected_location = None
-        self.depth = 3
+        self.depth = 4
 
     def make_move(self, move):
         if move[0].color == "white":
