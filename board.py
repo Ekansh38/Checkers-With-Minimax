@@ -14,6 +14,15 @@ class Board:
         self.selected_piece = None
         self.selected_location = None
         self.depth = 4
+        self.ai = False
+        self.set_ai()
+
+    def set_ai(self):
+        ai = input("Do you want to play against the AI? (y/n): ")
+        if ai == "y":
+            self.ai = True
+        else:
+            self.ai = False
 
     def make_move(self, move):
         if move[0].color == "white":
@@ -63,7 +72,10 @@ class Board:
         if self.turn == self.white_team:
             switch = self.white_to_play()
         else:
-            switch = self.black_to_play_ai()
+            if self.ai:
+                switch = self.black_to_play_ai()
+            else:
+                switch = self.black_to_play()
 
         if switch:
             if self.turn == self.white_team:
