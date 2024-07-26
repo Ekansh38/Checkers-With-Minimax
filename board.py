@@ -134,10 +134,14 @@ class Board:
                                     made_move = True
                                     ended_capture_streek = True
                                 else:
+                                    cap_streak = False
                                     for capture in self.white_team.capture_moves:
                                         if capture[0] == self.selected_piece:
                                             made_move = False
+                                            cap_streak = True
                                             break
+                                    if not cap_streak:
+                                        made_move = True
 
                     elif not can_capture:
                         made_move = self.white_team.make_move(
@@ -216,10 +220,15 @@ class Board:
                                     made_move = True
                                     ended_capture_streek = True
                                 else:
+                                    cap_streak = False
                                     for capture in self.black_team.capture_moves:
                                         if capture[0] == self.selected_piece:
                                             made_move = False
+                                            cap_streak = True
                                             break
+
+                                    if not cap_streak:
+                                        made_move = True
 
                     elif not can_capture:
                         made_move = self.black_team.make_move(
@@ -262,7 +271,6 @@ class Board:
                 break
 
         if found_piece:
-            print("vaild")
 
             self.black_team.check_possible_moves(self.white_team.pieces)
 
@@ -283,10 +291,15 @@ class Board:
                             made_move = True
                             ended_capture_streek = True
                         else:
+                            cap_streak = False
                             for capture in self.black_team.capture_moves:
                                 if capture[0] == self.selected_piece:
                                     made_move = False
+                                    cap_streak = True
                                     break
+
+                            if not cap_streak:
+                                made_move = True
 
             elif not can_capture:
                 made_move = self.black_team.make_move(
