@@ -13,7 +13,7 @@ class Board:
         self.turn = self.white_team
         self.selected_piece = None
         self.selected_location = None
-        self.depth = 4
+        self.depth = int(input("Enter the depth of the AI: "))
         self.ai = False
         self.set_ai()
 
@@ -73,6 +73,7 @@ class Board:
             switch = self.white_to_play()
         else:
             if self.ai:
+                pygame.display.update()
                 switch = self.black_to_play_ai()
             else:
                 switch = self.black_to_play()
@@ -262,7 +263,7 @@ class Board:
                     return made_move
 
     def black_to_play_ai(self):
-        move = minimax(self, self.depth, False)
+        move = minimax(self, self.depth, -1000, 1000, False)
         self.selected_piece = move[1][0]
         self.selected_location = move[1][1]
 

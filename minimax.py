@@ -1,7 +1,7 @@
 from copy import deepcopy
 
 
-def minimax(position, depth, maximizing):
+def minimax(position, depth, alpha, beta, maximizing):
     win = position.check_for_win()
 
     best_move = None
@@ -30,11 +30,15 @@ def minimax(position, depth, maximizing):
             else:
                 position_copy.make_move(move)
 
-            eval, _ = minimax(position_copy, depth - 1, False)
+            eval, _ = minimax(position_copy, depth - 1, alpha, beta, False)
 
             if eval > max_eval:
                 max_eval = eval
                 best_move = move
+
+            alpha = max(alpha, eval)
+            if beta <= alpha:
+                break
 
         return max_eval, best_move
 
@@ -55,10 +59,14 @@ def minimax(position, depth, maximizing):
             else:
                 position_copy.make_move(move)
 
-            eval, _ = minimax(position_copy, depth - 1, True)
+            eval, _ = minimax(position_copy, depth - 1, alpha, beta, True)
 
             if eval < min_eval:
                 min_eval = eval
                 best_move = move
+
+            beta = min(beta, eval)
+            if beta <= alpha:
+                break
 
         return min_eval, best_move
