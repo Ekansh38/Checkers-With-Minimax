@@ -61,7 +61,7 @@ I would love for anyone to contribute to this project and make it better in anyw
 
 ## License
 
-Distributed under the MIT License. See LICENSE.md for more information.
+Distributed under the MIT License. See LICENSE for more information.
 
 ## Contact
 

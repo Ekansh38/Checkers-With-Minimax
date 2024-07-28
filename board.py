@@ -2,7 +2,7 @@ import pygame
 from pygame.math import Vector2
 
 from grid import SIZE, draw_grid
-from minimax import minimax
+from minimax import minimax, minimax_with_pruning
 from team import Team
 
 
@@ -16,6 +16,9 @@ class Board:
         self.depth = int(input("Enter the depth of the AI: "))
         self.ai = False
         self.set_ai()
+        self.prune = (
+            True if input("Do you want to use pruning? (y/n): ") == "y" else False
+        )
 
     def set_ai(self):
         ai = input("Do you want to play against the AI? (y/n): ")
@@ -263,7 +266,10 @@ class Board:
                     return made_move
 
     def black_to_play_ai(self):
-        move = minimax(self, self.depth, -1000, 1000, False)
+        if self.prune:
+            move = minimax_with_pruning(self, self.depth, -1000, 1000, False)
+        else:
+            move = minimax(self, self.depth, False)
         self.selected_piece = move[1][0]
         self.selected_location = move[1][1]
 
