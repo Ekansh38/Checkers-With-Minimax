@@ -57,7 +57,7 @@ And just whatever you want to do with it.
 
 ## Contributing
 
-I would love for anyone to contribute to this project and make it better in anyway possible. (because I am not that good at coding)
+I would love for anyone to contribute to this project and make it better in anyway possible.
 
 ## License
 
@@ -65,10 +65,7 @@ Distributed under the MIT License. See LICENSE for more information.
 
 ## Contact
 
-Ekansh - [Twitter or X](https://x.com/mister_byte_) - [YouTube Channel](https://www.youtube.com/@mister_byte_) - goenka.ekansh@gmail.com
-
-Here is the YouTube playlist of me developing this thing!
-[YouTube Link](https://www.youtube.com/watch?v=bqYbHhKsVqE&list=PL0VzTA7jLj1QWBFYq50YmCpHfRDonRG8i)
+ekansh@ekanshgoenka.com
 
 ## Acknowledgments
 
